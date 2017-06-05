@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.jafir.testdatabinding.MainActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="user"
+            type="com.jafir.testdatabinding.User" />
+
+        <variable
+            name="handler"
+            type="com.jafir.testdatabinding.MainHandler" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name +' '+ user.age}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:id="@+id/button"
+            android:onClick="@{v->handler.str(`123`)}"
+            android:layout_height="wrap_content"
+           />
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="@{handler::click }"-->
+            <!--android:visibility="@{user.visiable ? View.VISIBLE : View.GONE}"-->
+             <!--/>-->
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

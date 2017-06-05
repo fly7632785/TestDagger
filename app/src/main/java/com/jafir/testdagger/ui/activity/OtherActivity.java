@@ -21,6 +21,7 @@ import com.jafir.testdagger.model.User;
 import com.jafir.testdagger.utils.ReyclerViewTouchAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,8 +51,8 @@ public class OtherActivity extends AppCompatActivity {
             data.add(i + "");
         }
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MyAdapter adapter = new MyAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.scheduleLayoutAnimation();
 
@@ -84,7 +85,8 @@ public class OtherActivity extends AppCompatActivity {
 
         @Override
         public void onItemDragDone(int fromposition, int toposition) {
-
+            Collections.swap(data,fromposition,toposition);
+            notifyItemMoved(fromposition, toposition);
         }
 
         @Override
@@ -149,8 +151,9 @@ public class OtherActivity extends AppCompatActivity {
 
             /**
              * 应用
+             * !!!注意这里不是makeFlag 而是makeMovementFlags
              */
-            return makeFlag(dragFlag, swapFlag);
+            return makeMovementFlags(dragFlag, swapFlag);
         }
 
         @Override

@@ -1,19 +1,26 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.1.2'
     repositories {
         jcenter()
         // required to find the project's artifacts
         maven { url "https://www.jitpack.io" }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap-1.1"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:2.3.2'
         //dagger
         classpath 'me.tatarka:gradle-retrolambda:3.2.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         //不使用这个了   使用官方的的annotationProcesssor
 //        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
     }
+
 
 }
 

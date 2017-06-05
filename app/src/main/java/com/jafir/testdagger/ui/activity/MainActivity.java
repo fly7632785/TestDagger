@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = AppContext.get().getAppComponent().getContext();
         inject();
 
+
         Log.d("debug", "MainActivity user:" + user);
         Log.d("debug", "MainActivity user:" + AppContext.get().getAppComponent().getUser());
         Log.d("debug", "MainActivity getAppComponent:" + AppContext.get().getAppComponent());

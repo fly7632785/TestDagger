@@ -1,0 +1,131 @@
+<!--debug当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
+<configuration debug="true">
+    <!--定义文件路径-->
+    <property name="LOG_DIR" value="/sdcard/log" />
+
+    <!--声明一个时间戳-->
+    <timestamp datePattern="yyyyMMdd" key="today" />
+
+    <!--&lt;!&ndash; Create a logcat appender &ndash;&gt;-->
+    <appender name="logcat" class="ch.qos.logback.classic.android.LogcatAppender">
+        <tagEncoder>
+            <pattern>%logger{12}</pattern>
+        </tagEncoder>
+        <encoder>
+            <pattern>[%-10thread] %msg</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Create a file appender for TRACE-level messages -->
+    <appender name="TraceLog" class="ch.qos.logback.core.FileAppender">
+        <!--开启过滤表示只接收 TRACE级别的日志然后写到文件中-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <lazy>true</lazy>
+        <!--log追加到文件,否则覆盖文件-->
+        <append>true</append>
+        <file>${LOG_DIR}/trace.txt</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--声明一个RollingFileAppender  可以设置保存多少天内的日志  -->
+    <appender name="BASE_ROLL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/base.roll.${today}.txt</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date %-5relative [%thread] %-5level %logger{36} [%file:%M:%line] - %msg%n
+            </pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/base.roll.%d{yyyy-MM-dd}.txt</fileNamePattern>
+            <!--最大保存7天的日志-->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <!--文件大于10mb,切换文件-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+
+    <!--&lt;!&ndash; Create a file appender for DEBUG-level messages &ndash;&gt;-->
+    <appender name="DebugLog" class="ch.qos.logback.core.FileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <file>${LOG_DIR}/debug.txt</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--&lt;!&ndash;用来设置某一个包或者具体的某一个类的日志打印级别、以及指定<appender>。-->
+    <!--<logger>仅有一个name属性，一个可选的level和一个可选的addtivity属性。&ndash;&gt;-->
+    <!-- Write TRACE messages from class A to its own log -->
+    <!--<logger name="com.jafir.testkoltlin.LogbackActivity" level="TRACE">-->
+    <!--<appender-ref ref="TraceLog" />-->
+    <!--</logger>-->
+
+    <!--&lt;!&ndash; Write DEBUG messages from class B to its own log &ndash;&gt;-->
+    <!--<logger name="com.jafir.testkoltlin.LogbackActivity" level="DEBUG">-->
+    <!--<appender-ref ref="DebugLog" />-->
+    <!--</logger>-->
+
+    <!--Write INFO (and higher-level) messages to logcat-->
+    <!--level TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF-->
+    <root level="ALL">
+        <appender-ref ref="logcat" />
+        <appender-ref ref="DebugLog" />
+        <appender-ref ref="TraceLog" />
+        <appender-ref ref="BASE_ROLL_FILE" />
+    </root>
+    <!--支持的level-->
+    <!--TRACE-->
+    <!--DEBUG-->
+    <!--INFO-->
+    <!--WARN-->
+    <!--ERROR-->
+
+    <!--<pattern>
+      %d{yyyy-MM-dd HH:mm:ss} [%level] - %msg%n
+      Logger: %logger
+      Class: %class
+      File: %file
+      Caller: %caller
+      Line: %line
+      Message: %m
+      Method: %M
+      Relative: %relative
+      Thread: %thread
+      Exception: %ex
+      xException: %xEx
+      nopException: %nopex
+      rException: %rEx
+      Marker: %marker
+      %n
+  </pattern>-->
+
+    <!--引用其他位置的配置信息-->
+    <!--<includes>-->
+    <!--<include file="/sdcard/foo.xml"/>-->
+    <!--<include resource="assets/config/test.xml"/>-->
+    <!--<include resource="AndroidManifest.xml"/>-->
+
+    <!--<include file="/sdcard/logback/logback-test.xml"/>-->
+    <!--<include file="/sdcard/logback/logback.xml"/>-->
+    <!--<include resource="AndroidManifest.xml"/>-->
+    <!--<include resource="assets/logback-test.xml"/>-->
+    <!--<include resource="assets/logback.xml"/>-->
+    <!--</includes>-->
+</configuration>

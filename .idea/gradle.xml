@@ -9,7 +9,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/testdatabinding" />
             <option value="$PROJECT_DIR$/testjava" />
+            <option value="$PROJECT_DIR$/testkoltlin" />
+            <option value="$PROJECT_DIR$/testqr" />
+            <option value="$PROJECT_DIR$/testrxaandroid" />
+            <option value="$PROJECT_DIR$/testrxjava" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -4,7 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TestDagger.iml" filepath="$PROJECT_DIR$/TestDagger.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testdatabinding/testdatabinding.iml" filepath="$PROJECT_DIR$/testdatabinding/testdatabinding.iml" />
       <module fileurl="file://$PROJECT_DIR$/testjava/testjava.iml" filepath="$PROJECT_DIR$/testjava/testjava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testkoltlin/testkoltlin.iml" filepath="$PROJECT_DIR$/testkoltlin/testkoltlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testqr/testqr.iml" filepath="$PROJECT_DIR$/testqr/testqr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testrxaandroid/testrxaandroid.iml" filepath="$PROJECT_DIR$/testrxaandroid/testrxaandroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testrxjava/testrxjava.iml" filepath="$PROJECT_DIR$/testrxjava/testrxjava.iml" />
     </modules>
   </component>
 </project>

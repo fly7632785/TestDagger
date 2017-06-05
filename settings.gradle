@@ -1,1 +1,1 @@
-include ':app', ':testjava'
+include ':app', ':testjava', ':testqr', ':testkoltlin', ':testdatabinding', ':testrxjava', ':testrxaandroid'
